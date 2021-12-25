@@ -24,12 +24,12 @@ func init() {
 	flag.StringVar(&pkgName, "p", "model", "pkg name")
 	flag.StringVar(&pkgPath, "d", "./model", "pkg dir path")
 	flag.StringVar(&tagKey, "tag", "db", "tag key")
-	flag.StringVar(&tab, "t", "", "table,eg:user;order")
+	flag.StringVar(&tab, "t", "", "table,eg:-t=user;order")
 
 	flag.BoolVar(&isOutputCmd, "v", false, "output cmd,eg:-v=true")
 	flag.BoolVar(&ucFirstOnly, "u", true, "uc first only,eg:-u=true")
-	flag.BoolVar(&enableTableNameFunc, "m", false, "output cmd eg:-add_tab_method=true")
-	flag.BoolVar(&enableJsonTag, "j", false, "add json tag eg:-add_json=true")
+	flag.BoolVar(&enableTableNameFunc, "m", false, "add TableName func eg:-m=true")
+	flag.BoolVar(&enableJsonTag, "j", false, "add json tag eg:-j=true")
 	flag.Parse()
 }
 
