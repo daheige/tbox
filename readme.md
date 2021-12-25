@@ -22,7 +22,7 @@
         -p string
             pkg name,eg:-p=model (default "model")
         -t string
-            table,eg:-u=user;order
+            table,eg:-t=user;order
         -tag string
             tag key,eg:-tag=db (default "db")
         -u    whether uc first only,eg:-u=true (default true)

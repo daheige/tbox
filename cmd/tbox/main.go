@@ -25,7 +25,7 @@ func init() {
 	flag.StringVar(&pkgName, "p", "model", "pkg name,eg:-p=model")
 	flag.StringVar(&pkgPath, "d", "./model", "pkg dir path,eg:-d=./model")
 	flag.StringVar(&tagKey, "tag", "db", "tag key,eg:-tag=db")
-	flag.StringVar(&tab, "t", "", "table,eg:-u=user;order")
+	flag.StringVar(&tab, "t", "", "table,eg:-t=user;order")
 
 	flag.BoolVar(&isOutputCmd, "v", false, "whether output cmd,eg:-v=true")
 	flag.BoolVar(&ucFirstOnly, "u", true, "whether uc first only,eg:-u=true")
