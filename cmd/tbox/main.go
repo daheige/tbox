@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 	"strings"
 
 	"github.com/daheige/tbox"
@@ -20,16 +21,16 @@ var (
 )
 
 func init() {
-	flag.StringVar(&dsn, "dsn", "", "dsn string")
-	flag.StringVar(&pkgName, "p", "model", "pkg name")
-	flag.StringVar(&pkgPath, "d", "./model", "pkg dir path")
-	flag.StringVar(&tagKey, "tag", "db", "tag key")
-	flag.StringVar(&tab, "t", "", "table,eg:user;order")
+	flag.StringVar(&dsn, "dsn", "", `mysql dsn,eg:-dsn="root:root1234@tcp(127.0.0.1:3306)/test?charset=utf8mb4"`)
+	flag.StringVar(&pkgName, "p", "model", "pkg name,eg:-p=model")
+	flag.StringVar(&pkgPath, "d", "./model", "pkg dir path,eg:-d=./model")
+	flag.StringVar(&tagKey, "tag", "db", "tag key,eg:-tag=db")
+	flag.StringVar(&tab, "t", "", "table,eg:-u=user;order")
 
-	flag.BoolVar(&isOutputCmd, "v", false, "output cmd,eg:-v=true")
-	flag.BoolVar(&ucFirstOnly, "u", true, "uc first only,eg:-u=true")
-	flag.BoolVar(&enableTableNameFunc, "m", false, "output cmd eg:-add_tab_method=true")
-	flag.BoolVar(&enableJsonTag, "j", false, "add json tag eg:-add_json=true")
+	flag.BoolVar(&isOutputCmd, "v", false, "whether output cmd,eg:-v=true")
+	flag.BoolVar(&ucFirstOnly, "u", true, "whether uc first only,eg:-u=true")
+	flag.BoolVar(&enableTableNameFunc, "m", false, "whether add TableName func eg:-m=true")
+	flag.BoolVar(&enableJsonTag, "j", false, "whether add json tag eg:-j=true")
 	flag.Parse()
 }
 
@@ -55,12 +56,18 @@ func main() {
 		options = append(options, tbox.WithEnableJsonTag())
 	}
 
+	var err error
 	enc := tbox.New(dsn, options...)
 	if tab != "" {
 		tables := strings.Split(strings.TrimSuffix(tab, ";"), ";")
-		enc.Run(tables...)
-		return
+		err = enc.Run(tables...)
+	} else {
+		err = enc.Run()
 	}
 
-	enc.Run()
+	if err != nil {
+		log.Fatalln("generating code error: ", err)
+	}
+
+	log.Println("generating code success")
 }
