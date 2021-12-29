@@ -125,7 +125,7 @@ func (t *engine) getTableCode(tab string, record []columnEntry) []string {
 		tabInfoBuf.WriteString(fmt.Sprintf("\n// %s for %s", "TableName", tab))
 		tabInfoBuf.WriteString(fmt.Sprintf("\nfunc (%s) TableName() string {\n", structName))
 		tabInfoBuf.WriteString(fmt.Sprintf("\treturn %s\n", tabName))
-		tabInfoBuf.WriteString("}")
+		tabInfoBuf.WriteString("}\n")
 	}
 
 	return []string{
@@ -257,8 +257,8 @@ func (t *engine) camelCase(str string) string {
 				buf.WriteString(strings.ToUpper(s[0:1]))
 				buf.WriteString(strings.ToLower(s[1:]))
 			} else {
-				buf.WriteString(strings.ToUpper(s[0:1]))
-				buf.WriteString(s[1:])
+				lintStr := lintName(strings.Join([]string{strings.ToUpper(s[0:1]), s[1:]}, ""))
+				buf.WriteString(lintStr)
 			}
 		}
 	}

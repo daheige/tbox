@@ -17,7 +17,7 @@ var (
 	ucFirstOnly         bool
 	enableTableNameFunc bool
 	enableJsonTag       bool
-	tab                 string
+	table               string
 )
 
 func init() {
@@ -25,10 +25,9 @@ func init() {
 	flag.StringVar(&pkgName, "p", "model", "pkg name,eg:-p=model")
 	flag.StringVar(&pkgPath, "d", "./model", "pkg dir path,eg:-d=./model")
 	flag.StringVar(&tagKey, "tag", "db", "tag key,eg:-tag=db")
-	flag.StringVar(&tab, "t", "", "table,eg:-t=user;order")
-
+	flag.StringVar(&table, "t", "", "table,eg:-t=user;order")
 	flag.BoolVar(&isOutputCmd, "v", false, "whether output cmd,eg:-v=true")
-	flag.BoolVar(&ucFirstOnly, "u", true, "whether uc first only,eg:-u=true")
+	flag.BoolVar(&ucFirstOnly, "u", false, "whether uc first only,eg:-u=false")
 	flag.BoolVar(&enableTableNameFunc, "m", false, "whether add TableName func eg:-m=true")
 	flag.BoolVar(&enableJsonTag, "j", false, "whether add json tag eg:-j=true")
 	flag.Parse()
@@ -56,10 +55,14 @@ func main() {
 		options = append(options, tbox.WithEnableJsonTag())
 	}
 
+	if tagKey != "" {
+		options = append(options, tbox.WithTagKey(tagKey))
+	}
+
 	var err error
 	enc := tbox.New(dsn, options...)
-	if tab != "" {
-		tables := strings.Split(strings.TrimSuffix(tab, ";"), ";")
+	if table != "" {
+		tables := strings.Split(strings.TrimSuffix(table, ";"), ";")
 		err = enc.Run(tables...)
 	} else {
 		err = enc.Run()
