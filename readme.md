@@ -9,7 +9,7 @@
     $ go get -v github.com/daheige/tbox/cmd/tbox
     
     go 1.16.x version
-    $ go install github.com/daheige/tbox/cmd/tbox
+    $ go install github.com/daheige/tbox/cmd/tbox@latest
     
     $ tbox -h
     Usage of tbox:
