@@ -6,7 +6,7 @@ import (
 
 type param struct {
 	Input  string
-	Except string
+	Expect string
 }
 
 func TestName(t *testing.T) {
@@ -19,8 +19,8 @@ func TestName(t *testing.T) {
 
 	for _, val := range list {
 		should := lintName(val.Input)
-		if should != val.Except {
-			t.Logf("input %s except:%s,but got:%s", val.Input, val.Except, should)
+		if should != val.Expect {
+			t.Logf("input %s except:%s,but got:%s", val.Input, val.Expect, should)
 		}
 	}
 }
