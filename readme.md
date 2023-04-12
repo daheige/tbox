@@ -27,6 +27,7 @@
             tag key,eg:-tag=db (default "db")
         -u    whether uc first only,eg:-u=true (default false)
         -v    whether output cmd,eg:-v=true
+        -n    whether all field no null eg:-n=true
 
     take tbox_demo as an example:
     $ cd ~

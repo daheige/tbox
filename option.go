@@ -51,3 +51,10 @@ func WithEnableJsonTag() Option {
 		t.enableJsonTag = true
 	}
 }
+
+// WithNoNullField no null field when code gen.
+func WithNoNullField() Option {
+	return func(t *engine) {
+		t.noNullField = true
+	}
+}

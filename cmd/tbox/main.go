@@ -18,6 +18,7 @@ var (
 	enableTableNameFunc bool
 	enableJsonTag       bool
 	table               string
+	noNullField         bool
 )
 
 func init() {
@@ -30,6 +31,7 @@ func init() {
 	flag.BoolVar(&ucFirstOnly, "u", false, "whether uc first only,eg:-u=false")
 	flag.BoolVar(&enableTableNameFunc, "m", false, "whether add TableName func eg:-m=true")
 	flag.BoolVar(&enableJsonTag, "j", false, "whether add json tag eg:-j=true")
+	flag.BoolVar(&noNullField, "n", false, "whether all field no null eg:-n=true")
 	flag.Parse()
 }
 
@@ -57,6 +59,10 @@ func main() {
 
 	if tagKey != "" {
 		options = append(options, tbox.WithTagKey(tagKey))
+	}
+
+	if noNullField {
+		options = append(options, tbox.WithNoNullField())
 	}
 
 	var err error
