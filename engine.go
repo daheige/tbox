@@ -128,10 +128,10 @@ func (t *engine) getTableCode(tab string, record []columnEntry) []string {
 					}
 				} else if t.tagKey == "gorm" {
 					if val.FieldKey == "PRI" && val.Extra == "auto_increment" {
-						tabInfoBuf.WriteString(fmt.Sprintf("%s:\"%s primaryKey\"", t.tagKey,
+						tabInfoBuf.WriteString(fmt.Sprintf("%s:\"column:%s;primaryKey\"", t.tagKey,
 							strings.ToLower(val.Field)))
 					} else {
-						tabInfoBuf.WriteString(fmt.Sprintf("%s:\"%s\"", t.tagKey, strings.ToLower(val.Field)))
+						tabInfoBuf.WriteString(fmt.Sprintf("%s:\"column:%s\"", t.tagKey, strings.ToLower(val.Field)))
 					}
 				} else {
 					tabInfoBuf.WriteString(fmt.Sprintf("%s:\"%s\"", t.tagKey, strings.ToLower(val.Field)))
