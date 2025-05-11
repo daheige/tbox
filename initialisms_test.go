@@ -20,7 +20,7 @@ func TestName(t *testing.T) {
 	for _, val := range list {
 		should := lintName(val.Input)
 		if should != val.Expect {
-			t.Logf("input %s except:%s,but got:%s", val.Input, val.Expect, should)
+			t.Logf("input %s except:%s,but got:%s\n", val.Input, val.Expect, should)
 		}
 	}
 }

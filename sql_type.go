@@ -52,7 +52,7 @@ func getType(mysqlType string) string {
 	panic(fmt.Errorf("sql type:%s not found", mysqlType))
 }
 
-// RegisterType register mysql to to golang type
+// RegisterType register mysql into golang type
 func RegisterType(mysqlType string, goType string) {
 	if _, ok := typeForMysqlToGo[mysqlType]; ok {
 		panic(fmt.Sprintf("the mysql type:%s to go type:%s has exist", mysqlType, goType))
