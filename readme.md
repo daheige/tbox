@@ -113,7 +113,7 @@ func (UserEntity) TableName() string {
 
 # xorm engine gen tab struct
 ```shell
-tbox -dsn="root:root123456@tcp(127.0.0.1:3306)/test?checkConnLiveness=false&loc=Local&parseTime=true&readTimeout=5s&timeout=10s&writeTimeout=5s&maxAllowedPacket=0&charset=utf8mb4" -t=user -v=true -n=true -m=true -j=true -tag=xorm
+tbox -dsn="root:root123456@tcp(127.0.0.1:3306)/test?checkConnLiveness=false&loc=Local&parseTime=true&readTimeout=5s&timeout=10s&writeTimeout=5s&maxAllowedPacket=0&charset=utf8mb4" -t=user -v=true -n=true -f=true -j=true -tag=xorm
 ```
 code style:
 ```go
@@ -140,7 +140,7 @@ func (UserEntity) TableName() string {
 ```
 # gorm engine gen tab struct
 ```shell
-tbox -dsn="root:root123456@tcp(127.0.0.1:3306)/test?checkConnLiveness=false&loc=Local&parseTime=true&readTimeout=5s&timeout=10s&writeTimeout=5s&maxAllowedPacket=0&charset=utf8mb4" -t=user -v=true -n=true -m=true -j=true -tag=gorm
+tbox -dsn="root:root123456@tcp(127.0.0.1:3306)/test?checkConnLiveness=false&loc=Local&parseTime=true&readTimeout=5s&timeout=10s&writeTimeout=5s&maxAllowedPacket=0&charset=utf8mb4" -t=user -v=true -n=true -f=true -j=true -tag=gorm
 ```
 code style:
 ```go
