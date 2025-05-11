@@ -35,6 +35,8 @@ type engine struct {
 	enableJsonTag bool
 
 	noNullField bool
+
+	tableFileSuffix string // default:gen
 }
 
 // New create an entry for engine
@@ -44,11 +46,12 @@ func New(dsn string, opts ...Option) *engine {
 	}
 
 	t := &engine{
-		dsn:         dsn,
-		packageName: "model",
-		pkgPath:     "./model",
-		tagKey:      "db",
-		addTag:      true,
+		dsn:             dsn,
+		packageName:     "model",
+		pkgPath:         "./model",
+		tagKey:          "db",
+		addTag:          true,
+		tableFileSuffix: "gen",
 	}
 
 	for _, o := range opts {
@@ -173,7 +176,9 @@ func (t *engine) Run(table ...string) error {
 
 		// write to file
 		var fileName string
-		fileName, err = filepath.Abs(filepath.Join(t.pkgPath, strings.ToLower(tab)+"_gen.go"))
+		fileName, err = filepath.Abs(filepath.Join(
+			t.pkgPath, fmt.Sprintf("%s_%s.go", strings.ToLower(tab), strings.TrimPrefix(t.tableFileSuffix, "_")),
+		))
 		if err != nil {
 			log.Println("file path error: ", err)
 			continue

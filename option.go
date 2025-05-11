@@ -58,3 +58,10 @@ func WithNoNullField() Option {
 		t.noNullField = true
 	}
 }
+
+// WithTableFileSuffix set table suffix for gen file,eg:user_gen.go
+func WithTableFileSuffix(suffix string) Option {
+	return func(t *engine) {
+		t.tableFileSuffix = suffix
+	}
+}

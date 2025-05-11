@@ -19,6 +19,7 @@ var (
 	enableJsonTag       bool
 	table               string
 	noNullField         bool
+	tableFileSuffix     string
 )
 
 func init() {
@@ -29,9 +30,10 @@ func init() {
 	flag.StringVar(&table, "t", "", "table,eg:-t=user;order")
 	flag.BoolVar(&isOutputCmd, "v", false, "whether output cmd,eg:-v=true")
 	flag.BoolVar(&ucFirstOnly, "u", false, "whether uc first only,eg:-u=false")
-	flag.BoolVar(&enableTableNameFunc, "m", false, "whether add TableName func eg:-m=true")
+	flag.BoolVar(&enableTableNameFunc, "f", false, "whether add TableName func eg:-m=true")
 	flag.BoolVar(&enableJsonTag, "j", false, "whether add json tag eg:-j=true")
 	flag.BoolVar(&noNullField, "n", false, "whether all field no null eg:-n=true")
+	flag.StringVar(&tableFileSuffix, "s", "tab", "table suffix for gen file,eg:user_tab.go")
 	flag.Parse()
 }
 
@@ -39,6 +41,8 @@ func main() {
 	options := []tbox.Option{
 		tbox.WithPkgName(pkgName),
 		tbox.WithPkgPath(pkgPath),
+		tbox.WithTableFileSuffix(tableFileSuffix),
+		tbox.WithTagKey(tagKey),
 	}
 
 	if isOutputCmd {
@@ -57,21 +61,17 @@ func main() {
 		options = append(options, tbox.WithEnableJsonTag())
 	}
 
-	if tagKey != "" {
-		options = append(options, tbox.WithTagKey(tagKey))
-	}
-
 	if noNullField {
 		options = append(options, tbox.WithNoNullField())
 	}
 
 	var err error
-	enc := tbox.New(dsn, options...)
+	engine := tbox.New(dsn, options...)
 	if table != "" {
-		tables := strings.Split(strings.TrimSuffix(table, ";"), ";")
-		err = enc.Run(tables...)
+		tables := strings.Split(strings.TrimSuffix(table, ","), ",")
+		err = engine.Run(tables...)
 	} else {
-		err = enc.Run()
+		err = engine.Run()
 	}
 
 	if err != nil {
