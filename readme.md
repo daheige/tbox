@@ -5,7 +5,7 @@
     operation, and facilitates project maintenance and expansion.
 
 # usage
-    go version >= 1.16
+    go version >= 1.21
 ```shell
 go install github.com/daheige/tbox/cmd/tbox@latest
 ```
