@@ -30,7 +30,7 @@ func init() {
 	flag.StringVar(&table, "t", "", "table,eg:-t=user;order")
 	flag.BoolVar(&isOutputCmd, "v", false, "whether output cmd,eg:-v=true")
 	flag.BoolVar(&ucFirstOnly, "u", false, "whether uc first only,eg:-u=false")
-	flag.BoolVar(&enableTableNameFunc, "f", false, "whether add TableName func eg:-m=true")
+	flag.BoolVar(&enableTableNameFunc, "f", false, "whether add TableName func eg:-f=true")
 	flag.BoolVar(&enableJsonTag, "j", false, "whether add json tag eg:-j=true")
 	flag.BoolVar(&noNullField, "n", false, "whether all field no null eg:-n=true")
 	flag.StringVar(&tableFileSuffix, "s", "tab", "table suffix for gen file,eg:user_tab.go")

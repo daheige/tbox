@@ -6,33 +6,39 @@
 
 # usage
     go version >= 1.16
-    $ go install github.com/daheige/tbox/cmd/tbox@latest
-    
-    $ tbox -h
-    Usage of tbox:
-        -d string
-            pkg dir path,eg:-d=./model (default "./model")
-        -dsn string
-            mysql dsn,eg:-dsn="root:root1234@tcp(127.0.0.1:3306)/test?charset=utf8mb4"
-        -j  whether add json tag eg:-j=true
-        -f  whether add TableName func eg:-m=true
-        -p string
-            pkg name,eg:-p=model (default "model")
-        -t string
-            table,eg:-t="user,order"
-        -tag string
-            tag key,eg:-tag=db (default "db")
-        -u  whether uc first only,eg:-u=true (default false)
-        -v  whether output cmd,eg:-v=true
-        -n  whether all field no null eg:-n=true
-        -s  set table suffix for gen file,default:tab,eg:user_tab.go
+```shell
+go install github.com/daheige/tbox/cmd/tbox@latest
+```
+tbox help
+```shell
+tbox -h
+```
+```ini
+Usage of tbox:
+    -d string
+        pkg dir path,eg:-d=./model (default "./model")
+    -dsn string
+        mysql dsn,eg:-dsn="root:root1234@tcp(127.0.0.1:3306)/test?charset=utf8mb4"
+    -j  whether add json tag eg:-j=true (default:false)
+    -f  whether add TableName func,eg:-f=true (default:false)
+    -p string
+        pkg name,eg:-p=model (default:model)
+    -t string
+        table,eg:-t="user,order"
+    -tag string
+        tag key,eg:-tag=db (default:db)
+    -u  whether uc first only,eg:-u=true (default:false)
+    -v  whether output cmd,eg:-v=true (default:false)
+    -n  whether all field no null eg:-n=true (default:false)
+    -s  set table suffix for gen file,default:tab,eg:user_tab.go (default:tab)
 
-    take tbox_demo as an example:
-    $ cd ~
-    $ mkdir tbox_demo
-    $ cd tbox_demo
-    $ tbox -dsn="root:root1234@tcp(127.0.0.1:3306)/test?charset=utf8mb4"
-    2021/12/25 19:36:18 generating code success
+take tbox_demo as an example:
+$ cd ~
+$ mkdir tbox_demo
+$ cd tbox_demo
+$ tbox -dsn="root:root1234@tcp(127.0.0.1:3306)/test?charset=utf8mb4"
+2021/12/25 19:36:18 generating code success
+```
 
 # the style of code generation
 
